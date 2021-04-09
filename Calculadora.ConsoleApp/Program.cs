@@ -12,24 +12,11 @@ namespace Calculadora.ConsoleApp
             
             while (true)
             {
-            Console.WriteLine("Calculadora 1.7.1");
-
-            Console.WriteLine("Digite 1 para somar");
-
-            Console.WriteLine("Digite 2 para subtrair");
-
-            Console.WriteLine("Digite 3 para multiplicar");
-
-            Console.WriteLine("Digite 4 para dividir");
-
-            Console.WriteLine("Digite 5 para apresentar as operacoes");
-
-                Console.WriteLine("Digite S para sair");
+                MostrarMenu();
 
                 opcao = Console.ReadLine();
 
-                if (opcao != "1" && opcao != "2" && opcao != "3" &&
-                    opcao != "4" && opcao != "5" && opcao != "S" && opcao != "s")
+                if (EhOpcaoInvalida(opcao))
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("Opcao Invalida! Tente novamente.");
@@ -43,17 +30,18 @@ namespace Calculadora.ConsoleApp
                 {
                     Console.WriteLine();
 
-                    if(contadorOperacoesRealizadas == 0)
+                    if (contadorOperacoesRealizadas == 0)
                     {
                         Console.WriteLine("Nenhuma conta foi feita!");
                     }
-                    else { 
+                    else
+                    {
 
                         for (int i = 0; i < operacoesRealizadas.Length; i++)
-                    {
-                        if (operacoesRealizadas[i] != null)
-                            Console.WriteLine(operacoesRealizadas[i]);
-                    }
+                        {
+                            if (operacoesRealizadas[i] != null)
+                                Console.WriteLine(operacoesRealizadas[i]);
+                        }
                     }
 
                     Console.ReadLine();
@@ -62,17 +50,17 @@ namespace Calculadora.ConsoleApp
                     continue;
                 }
 
-                if (opcao.Equals("s", StringComparison.OrdinalIgnoreCase)) 
+                if (opcao.Equals("s", StringComparison.OrdinalIgnoreCase))
                 {
                     break;
                 }
 
                 double primeiroNumero, segundoNumero;
 
-            Console.Write("Digite o primeiro número: ");
-            primeiroNumero = Convert.ToDouble(Console.ReadLine());
+                Console.Write("Digite o primeiro número: ");
+                primeiroNumero = Convert.ToDouble(Console.ReadLine());
 
-            
+
 
                 do
                 {
@@ -80,15 +68,15 @@ namespace Calculadora.ConsoleApp
                     segundoNumero = Convert.ToDouble(Console.ReadLine());
 
 
-                    if (opcao == "4" && segundoNumero ==0)
-                    {  
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Numero errado! Tente outro");
-                    Console.ResetColor();
-                    Console.ReadLine();
+                    if (opcao == "4" && segundoNumero == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Numero errado! Tente outro");
+                        Console.ResetColor();
+                        Console.ReadLine();
                     }
 
-                } while (segundoNumero ==0);
+                } while (segundoNumero == 0);
 
                 double resultado = 0;
 
@@ -113,7 +101,7 @@ namespace Calculadora.ConsoleApp
                         resultado = primeiroNumero + segundoNumero;
                         simboloOperacao = "/";
                         break;
-                    
+
 
                     default:
                         break;
@@ -130,13 +118,36 @@ namespace Calculadora.ConsoleApp
 
                 Console.WriteLine();
 
-                
 
-            Console.ReadLine();
 
-            Console.Clear();
-              
+                Console.ReadLine();
+
+                Console.Clear();
+
             }
+        }
+
+        private static bool EhOpcaoInvalida(string opcao)
+        {
+            return opcao != "1" && opcao != "2" && opcao != "3" &&
+                                opcao != "4" && opcao != "5" && opcao != "S" && opcao != "s";
+        }
+
+        private static void MostrarMenu()
+        {
+            Console.WriteLine("Calculadora 1.7.1");
+
+            Console.WriteLine("Digite 1 para somar");
+
+            Console.WriteLine("Digite 2 para subtrair");
+
+            Console.WriteLine("Digite 3 para multiplicar");
+
+            Console.WriteLine("Digite 4 para dividir");
+
+            Console.WriteLine("Digite 5 para apresentar as operacoes");
+
+            Console.WriteLine("Digite S para sair");
         }
     }
 }
